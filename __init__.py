@@ -1,1 +1,1 @@
-
+name = 'latex_table'
