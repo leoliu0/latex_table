@@ -7,8 +7,13 @@ class latex:
 
     def collect_row(self, row):
         first_cell = row[0]
-        str_row = ' & '.join([str(int(cell)) for cell in row[1:]])
-        self.num_rows = len(row) - 1
+        try:
+            str_row = ' & '.join([f'{int(cell):,}' for cell in row[1:]])
+            self.num_rows = len(row) - 1
+        except:
+            self.row.append(first_cell + '\\\\ \n')
+            return
+
         if not isinstance(first_cell, str):
             self.rows.append(str_row + '\\\\ \n')
             return
