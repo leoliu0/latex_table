@@ -7,11 +7,11 @@ class latex:
 
     def collect_row(self, row):
         first_cell = row[0]
+        self.num_rows = len(row) - 1
         try:
             str_row = ' & '.join([f'{int(cell):,}' for cell in row[1:]])
-            self.num_rows = len(row) - 1
         except:
-            self.row.append(first_cell + '\\\\ \n')
+            str_row = ' & '.join(row[1:])
             return
 
         if not isinstance(first_cell, str):
