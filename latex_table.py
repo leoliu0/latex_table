@@ -5,14 +5,17 @@ class latex:
         self.bdec = bdec
         self.tdec = tdec
 
-    def collect_row(self, row):
+    def collect_row(self, row, rounding=0):
         first_cell = row[0]
         self.num_rows = len(row) - 1
         try:
-            str_row = ' & '.join([f'{int(cell):,}' for cell in row[1:]])
+            if rounding == 0:
+                str_row = ' & '.join([f'{int(cell):,}' for cell in row[1:]])
+            else:
+                str_row = ' & '.join(
+                    [f'{round(cell,rounding):,}' for cell in row[1:]])
         except:
             str_row = ' & '.join(row[1:])
-            return
 
         if not isinstance(first_cell, str):
             self.rows.append(str_row + '\\\\ \n')
