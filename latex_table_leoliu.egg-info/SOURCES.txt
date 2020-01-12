@@ -1,0 +1,5 @@
+setup.py
+latex_table_leoliu.egg-info/PKG-INFO
+latex_table_leoliu.egg-info/SOURCES.txt
+latex_table_leoliu.egg-info/dependency_links.txt
+latex_table_leoliu.egg-info/top_level.txt
