@@ -1,9 +1,9 @@
 import setuptools
 
 setuptools.setup(
-    name="latex_table_leoliu",
-    version="0.0.1",
+    name="latex_table",
     author="Leo Liu",
+    version='0.1',
     author_email="auleo.liu@example.com",
     description="create latex table from adding rows",
     long_description_content_type="text/markdown",
