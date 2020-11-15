@@ -1,1 +1,0 @@
-name = 'latex_table'
