@@ -79,7 +79,10 @@ class latex:
         self.rows.append('\\hline \\\\ \n')
 
     def empty_row(self):
-        self.rows.append('& ' * self.num_rows + '\\\\ \n')
+        self.rows.append('\\\\ \n')
+
+    def write_plain_row(self,text):
+        self.rows.append(text + '\\\\ \n')
 
     def write_table(self, fname):
         with open(fname, 'w') as f:
