@@ -78,13 +78,14 @@ class latex:
     def hline(self):
         self.rows.append('\\hline \\\\ \n')
 
-    def empty_row(self):
+    def write_empty_row(self):
         self.rows.append('\\\\ \n')
 
-    def write_plain_row(self,text):
+    def write_plain_row(self, text):
         self.rows.append(text + '\\\\ \n')
 
     def write_table(self, fname):
+        self.rows[-1] = self.rows[-1].strip(r'\\\\')
         with open(fname, 'w') as f:
             for row in self.rows:
                 f.write(row)
