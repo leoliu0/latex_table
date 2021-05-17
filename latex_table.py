@@ -84,8 +84,8 @@ class latex:
     def write_plain_row(self, text):
         self.rows.append(text + '\\\\ \n')
 
-    def write_table(self, fname):
-        self.rows[-1] = self.rows[-1].strip(r'\\\\')
-        with open(fname, 'w') as f:
+    def write_table(self, fname, mode):
+        self.rows[-1] = self.rows[-1].rstrip(r'\\\\')
+        with open(fname, mode) as f:
             for row in self.rows:
                 f.write(row)
