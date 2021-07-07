@@ -76,7 +76,8 @@ class latex:
         self.rows.append(str_t + '\\\\ \n')
 
     def hline(self):
-        self.rows.append('\\hline \\\\ \n')
+        #  self.rows.append('\\hline \\\\ \n')
+        self.rows.append('\\hline \n')
 
     def write_empty_row(self):
         self.rows.append('\\\\ \n')
