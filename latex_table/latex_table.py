@@ -92,3 +92,4 @@ class latex:
         with open(fname, mode) as f:
             for row in self.rows:
                 f.write(row)
+
