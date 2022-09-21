@@ -1,20 +1,21 @@
+def star(tval):
+    v = abs(tval)
+    stars = ""
+    if v > 1.644:
+        stars = "*"
+    if v >= 1.96:
+        stars = "**"
+    if v > 2.575:
+        stars = "***"
+    return stars
+
+
 class latex:
     def __init__(self, bdec=3, tdec=2):
         self.rows = []
         self.num_rows = 0
         self.bdec = bdec
         self.tdec = tdec
-
-    def star(self, tval):
-        v = abs(tval)
-        stars = ""
-        if v > 1.644:
-            stars = "*"
-        if v >= 1.96:
-            stars = "**"
-        if v > 2.575:
-            stars = "***"
-        return stars
 
     def collect_row(self, row, rounding=0):
         first_cell = row[0]
@@ -53,7 +54,7 @@ class latex:
         betas, ts = [], []
         for beta, t in zipped:
             if isinstance(beta, float):
-                betas.append(str(round(beta, self.bdec)) + self.star(t))
+                betas.append(str(round(beta, self.bdec)) + star(t))
                 ts.append("(" + str(round(t, self.tdec)) + ")")
             else:
                 betas.append(beta)
@@ -84,10 +85,8 @@ class latex:
         self.rows.append(text + "\\\\ \n")
 
     def write_table(self, fname, mode, debug=False):
-        for i in range(1, 10):
-            self.rows[-i] = self.rows[-i].replace("hline", "").strip().strip("\\")
-            if self.rows[-i]:
-                break
+        if self.rows[-1].strip() == "\\":
+            self.rows.pop()
         if debug:
             print(self.rows)
         with open(fname, mode) as f:
