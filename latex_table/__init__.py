@@ -10,12 +10,24 @@ def star(tval):
     return stars
 
 
+def normal(x, rounding):
+    if isinstance(x, float):
+        if rounding == 0:
+            return str(int(x))
+        return format(round(x, rounding), f".{rounding}f")
+    return str(x)
+
+
 class latex:
     def __init__(self, bdec=3, tdec=2):
         self.rows = []
         self.num_rows = 0
         self.bdec = bdec
         self.tdec = tdec
+
+    def collect_list(self, text, rounding=0):
+        text = [normal(x, rounding) for x in text]
+        self.rows.append(" & ".join(text) + "\\\\ \n")
 
     def collect_row(self, row, rounding=0):
         first_cell = row[0]
@@ -84,7 +96,7 @@ class latex:
     def write_plain_row(self, text):
         self.rows.append(text + "\\\\ \n")
 
-    def write_table(self, fname, mode, debug=False):
+    def write_table(self, fname, mode="w", debug=False):
         if self.rows[-1].strip() == "\\":
             self.rows.pop()
         if debug:
