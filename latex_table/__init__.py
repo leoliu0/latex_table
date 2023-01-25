@@ -87,8 +87,13 @@ class latex:
         self.rows.append(str_t + "\\\\ \n")
 
     def hline(self):
-        #  self.rows.append('\\hline \\\\ \n')
         self.rows.append("\\hline \n")
+
+    def toprule(self):
+        self.rows.append("\\toprule \n")
+
+    def bottomrule(self):
+        self.rows.append("\\bottomrule \n")
 
     def write_empty_row(self):
         self.rows.append("\\\\ \n")
@@ -97,6 +102,7 @@ class latex:
         self.rows.append(text + "\\\\ \n")
 
     def write_table(self, fname, mode="w", debug=False):
+        self.rows[-1] = self.rows[-1].strip().rstrip("\\\\")
         if self.rows[-1].strip() == "\\":
             self.rows.pop()
         if debug:
