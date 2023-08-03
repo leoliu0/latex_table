@@ -1,8 +1,0 @@
-.gitignore
-README.md
-setup.py
-latex_table/__init__.py
-latex_table.egg-info/PKG-INFO
-latex_table.egg-info/SOURCES.txt
-latex_table.egg-info/dependency_links.txt
-latex_table.egg-info/top_level.txt

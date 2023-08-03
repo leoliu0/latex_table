@@ -19,11 +19,12 @@ def normal(x, rounding):
 
 
 class latex:
-    def __init__(self, bdec=3, tdec=2):
+    def __init__(self, bdec=3, tdec=2, sdec=3):
         self.rows = []
         self.num_rows = 0
         self.bdec = bdec
         self.tdec = tdec
+        self.sdec = sdec
 
     def collect_list(self, text, rounding=0):
         text = [normal(x, rounding) for x in text]
@@ -62,12 +63,18 @@ class latex:
             row.replace("_", "\\&", 1)
         self.rows.append(str_row + "\\\\ \n")
 
-    def collect_beta_t(self, zipped):
+    def collect_beta_t(self, zipped, se=False, stars=True):
         betas, ts = [], []
         for beta, t in zipped:
             if isinstance(beta, float):
-                betas.append(str(round(beta, self.bdec)) + star(t))
-                ts.append("(" + str(round(t, self.tdec)) + ")")
+                if star:
+                    betas.append(f"{beta:.{self.bdec}f}" + star(t))
+                else:
+                    betas.append(f"{beta:.{self.bdec}f}")
+                if se:
+                    ts.append(f"({t:.{self.sdec}f})")
+                else:
+                    ts.append(f"({t:.{self.tdec}f})")
             else:
                 betas.append(beta)
                 ts.append(t)
@@ -88,12 +95,6 @@ class latex:
 
     def hline(self):
         self.rows.append("\\hline \n")
-
-    def toprule(self):
-        self.rows.append("\\toprule \n")
-
-    def bottomrule(self):
-        self.rows.append("\\bottomrule \n")
 
     def write_empty_row(self):
         self.rows.append("\\\\ \n")
